@@ -1,50 +1,68 @@
-# Welcome to your Expo app 👋
+# Lab AKB (Aplikasi Komputasi Bergerak)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg) ![Built with Expo](https://img.shields.io/badge/Built%20with-Expo-4630EB.svg)
 
-## Get started
+## ✨ Fitur Utama
 
-1. Install dependencies
+-   Menampilkan bentuk Segitiga, Lingkaran, dan Persegi Panjang.
+-   Menampilkan Nama dan Nomor Induk Mahasiswa dalam elemen yang berbeda.
+-   Desain dengan layout yang seimbang dan kontras warna yang baik.
 
-   ```bash
-   npm install
-   ```
+## 📸 Tampilan Aplikasi
 
-2. Start the app
+Berikut adalah tampilan akhir dari aplikasi.
 
-   ```bash
-   npx expo start
-   ```
+![Tampilan Aplikasi](./.github/tampilan.jpeg)
 
-In the output, you'll find options to open the app in a
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🛠️ Teknologi yang Digunakan
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+-   **React Native**: Kerangka kerja utama untuk membangun aplikasi.
+-   **Expo**: Platform untuk mempermudah pengembangan dan build aplikasi React Native.
+-   **TypeScript**: Digunakan untuk *static typing*, membuat kode lebih aman dan mudah dikelola.
 
-## Get a fresh project
+## ⚙️ Instalasi & Menjalankan Proyek
 
-When you're ready, run:
+Berikut adalah langkah-langkah untuk menjalankan proyek ini di lingkungan pengembangan lokal Anda.
 
-```bash
-npm run reset-project
-```
+1.  **Clone repository**
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+    ```bash
+    git clone [https://github.com/Fathur0146/Lab_AKB.git](https://github.com/Fathur0146/Lab_AKB.git)
+    ```
 
-## Learn more
+2.  **Masuk ke direktori proyek**
 
-To learn more about developing your project with Expo, look at the following resources:
+    ```bash
+    cd Lab_AKB
+    ```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+3.  **Install semua dependency**
 
-## Join the community
+    ```bash
+    npm install
+    ```
 
-Join our community of developers creating universal apps.
+4.  **Jalankan aplikasi**
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+    ```bash
+    npx expo start
+    ```
+
+    > **Catatan:** Perintah `npm start` juga akan berfungsi karena sudah diatur dalam file `package.json`.
+
+    Setelah menjalankan perintah di atas, akan muncul QR code. Pindai QR code tersebut menggunakan aplikasi **Expo Go** di ponsel Anda.
+
+## 📂 Struktur Folder
+
+Berikut adalah struktur folder utama dalam proyek ini:
+
+-   **/app**: Berisi semua layar dan logika navigasi aplikasi. Menggunakan sistem *file-based routing* dari Expo Router.
+-   **/assets**: Tempat menyimpan file statis seperti gambar, ikon, dan font.
+-   **app.json**: File konfigurasi utama untuk aplikasi Expo, tempat mengatur nama, ikon, splash screen, dll.
+-   **package.json**: Mencatat semua skrip (`npm start`) dan dependensi (library) yang digunakan proyek.
+-   **tsconfig.json**: Mengatur konfigurasi untuk compiler TypeScript pada proyek ini.
+
+## 📄 Lisensi
+
+Proyek ini didistribusikan di bawah Lisensi MIT.
