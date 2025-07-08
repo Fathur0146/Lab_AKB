@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: '#F5F5F5', // Memberi warna latar belakang
+    backgroundColor: 'whitesmoke', // Memberi warna latar belakang
   },
   // Style untuk Segitiga
   segitiga: {
@@ -70,14 +70,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 80,
     borderLeftColor: 'transparent',
     borderRightColor: 'transparent',
-    borderBottomColor: 'blue', // Warna biru
+    borderBottomColor: 'blue', 
     marginBottom: 20, // Memberi jarak
   },
   // Style untuk Persegi Panjang
   persegiPanjang: {
     width: 220,
     height: 50,
-    backgroundColor: 'green', // Warna hijau
+    backgroundColor: 'green',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   bentukPil: {
     width: 220,
     height: 50,
-    backgroundColor: 'red', // Warna merah
+    backgroundColor: 'red', 
     borderRadius: 25, // Setengah dari tinggi (height)
     justifyContent: 'center',
     alignItems: 'center',
