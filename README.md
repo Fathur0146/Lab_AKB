@@ -28,7 +28,7 @@ Berikut adalah langkah-langkah untuk menjalankan proyek ini di lingkungan pengem
 1.  **Clone repository**
 
     ```bash
-    git clone [https://github.com/Fathur0146/Lab_AKB.git](https://github.com/Fathur0146/Lab_AKB.git)
+    git clone (https://github.com/Fathur0146/Lab_AKB.git)
     ```
 
 2.  **Masuk ke direktori proyek**
