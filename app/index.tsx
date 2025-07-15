@@ -14,7 +14,7 @@ import {
   Platform,
 } from "react-native";
 
-// Aktifkan LayoutAnimation untuk Android
+// Aktifkan LayoutAnimation untuk Android agar animasi lebih mulus.
 if (Platform.OS === "android") {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -29,8 +29,7 @@ const cellMargin = 8;
 const numberOfColumns = 3;
 const cellSize = (screenWidth - cellMargin * (numberOfColumns + 1)) / numberOfColumns;
 
-// Daftar gambar: 9 gambar utama dan 9 gambar alternatif.
-// Pastikan semua URL lengkap dan valid.
+// Daftar lengkap gambar: 9 gambar utama dan 9 gambar alternatif.
 const images = [
   // Goblin
   {
@@ -173,8 +172,8 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "flex-start", // Mulai dari kiri
-    paddingHorizontal: cellMargin / 2, // Beri padding di sisi luar grid
+    justifyContent: "center",
+    paddingHorizontal: cellMargin / 2,
     marginTop: 20,
     paddingBottom: 40,
   },
