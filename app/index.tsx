@@ -1,6 +1,7 @@
 /**
  * @file app/index.tsx
- * @description Komponen React Native (Expo) untuk menampilkan grid gambar 3x3 interaktif.
+ * @description Komponen React Native (Expo) untuk menampilkan grid gambar 3x3 yang interaktif,
+ * dengan penskalaan individual yang dibatasi hingga 2x.
  */
 
 import React, { useState } from "react";
@@ -15,12 +16,14 @@ import {
   Platform,
 } from "react-native";
 
-// Aktifkan LayoutAnimation untuk Android
+// Aktifkan LayoutAnimation untuk Android untuk animasi yang lebih halus
 if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
-// Data gambar lengkap
+// --- 1. Definisi Data & Tipe ---
+
+// Daftar lengkap dan tidak terpotong dari 9 pasang gambar
 const imageData = [
     { main: "https://i.pinimg.com/1200x/6f/0a/ea/6f0aea124653486be5fe605851a8d45f.jpg", alt: "https://i.pinimg.com/736x/15/d2/50/15d250b65ac9c653b1366656693dcbbb.jpg" },
     { main: "https://i.pinimg.com/736x/c1/84/ec/c184ecd5aced13a9367d991527941824.jpg", alt: "https://i.pinimg.com/736x/ab/a0/1a/aba01aaf922c1d3efe58c8e3ebce20fd.jpg" },
@@ -33,16 +36,22 @@ const imageData = [
     { main: "https://i.pinimg.com/1200x/82/a0/ea/82a0eaad0d11da502eb150d87b2a5d3b.jpg", alt: "https://i.pinimg.com/736x/ac/68/01/ac680193eae6d05df62eb71c99c51460.jpg" },
 ];
 
-const screenWidth = Dimensions.get("window").width;
-const cellMargin = 8;
-const numberOfColumns = 3;
-const cellSize = (screenWidth - cellMargin * (numberOfColumns + 1)) / numberOfColumns;
-
+// Interface untuk mendefinisikan state setiap gambar
 interface ImageState {
   clickCount: number;
   scale: number;
   isAlt: boolean;
 }
+
+// --- 2. Perhitungan Layout Responsif ---
+
+// Penetapan ukuran sel yang seragam berdasarkan lebar layar
+const screenWidth = Dimensions.get("window").width;
+const cellMargin = 8;
+const numberOfColumns = 3;
+const cellSize = (screenWidth - cellMargin * (numberOfColumns + 1)) / numberOfColumns;
+
+// --- 3. Komponen Utama ---
 
 export default function ImageGrid() {
   const [states, setStates] = useState<ImageState[]>(
@@ -53,25 +62,21 @@ export default function ImageGrid() {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setStates((prevStates) =>
       prevStates.map((item, i) => {
-        // Hanya ubah state gambar yang diklik dan belum mencapai batas skala
+        // Hanya perbarui state untuk gambar yang diklik
         if (i !== index || item.clickCount >= 2) {
-          return item;
+          return item; // Berhenti jika sudah mencapai skala maksimum
         }
 
-        // LOGIKA BARU YANG LEBIH EKSPLISIT
         const nextClickCount = item.clickCount + 1;
         let newScale = 1.2;
-        
-        // Secara eksplisit atur skala ke 2.0 jika ini adalah klik kedua (atau lebih)
         if (nextClickCount >= 2) {
-          newScale = 2.0;
+          newScale = 2.0; // Batas maksimum skala
         }
 
         return {
-          ...item, // Salin state lama
           clickCount: nextClickCount,
           scale: newScale,
-          isAlt: true, // Selalu tampilkan gambar alternatif setelah klik pertama
+          isAlt: true,
         };
       })
     );
@@ -89,14 +94,13 @@ export default function ImageGrid() {
             onPress={() => handleClick(index)}
             style={styles.cell}
             activeOpacity={0.8}
-            // Nonaktifkan tombol saat skala maksimum (2.0x) tercapai pada klik kedua
             disabled={current.clickCount >= 2}
           >
             <Image
               source={{ uri: sourceUri }}
               style={[
                 styles.image,
-                { transform: [{ scale: current.scale }] },
+                { transform: [{ scale: current.scale }] }, // Implementasi penskalaan
               ]}
               resizeMode="cover"
             />
@@ -106,6 +110,8 @@ export default function ImageGrid() {
     </View>
   );
 }
+
+// --- 4. StyleSheet ---
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -117,6 +123,7 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
   cell: {
+    // Penetapan ukuran sel yang seragam
     width: cellSize,
     height: cellSize / (3 / 4),
     margin: cellMargin / 2,
