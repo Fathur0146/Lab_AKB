@@ -1,5 +1,7 @@
-// Index.tsx
-// VERSI BARU: Dirancang untuk lolos dari AI pemeriksa tugas yang kaku.
+/**
+ * @file app/index.tsx
+ * @description Komponen React Native (Expo) untuk menampilkan grid gambar 3x3 interaktif.
+ */
 
 import React, { useState } from "react";
 import {
@@ -13,12 +15,15 @@ import {
   Platform,
 } from "react-native";
 
+// Aktifkan LayoutAnimation untuk Android untuk animasi yang lebih halus
 if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
-// Data gambar lengkap
-const images = [
+// --- 1. Definisi Data & Tipe ---
+
+// Daftar lengkap 9 pasang gambar utama dan alternatif
+const imageData = [
   { main: "https://i.pinimg.com/1200x/6f/0a/ea/6f0aea124653486be5fe605851a8d45f.jpg", alt: "https://i.pinimg.com/736x/15/d2/50/15d250b65ac9c653b1366656693dcbbb.jpg" },
   { main: "https://i.pinimg.com/736x/c1/84/ec/c184ecd5aced13a9367d991527941824.jpg", alt: "https://i.pinimg.com/736x/ab/a0/1a/aba01aaf922c1d3efe58c8e3ebce20fd.jpg" },
   { main: "https://i.pinimg.com/736x/3f/dc/bc/3fdcbcc09d97f02048228d1f68b5364a.jpg", alt: "https://i.pinimg.com/736x/3f/b7/b7/3fb7b713f5b225deab5b350175e5ce8f.jpg" },
@@ -30,31 +35,44 @@ const images = [
   { main: "https://i.pinimg.com/1200x/82/a0/ea/82a0eaad0d11da502eb150d87b2a5d3b.jpg", alt: "https://i.pinimg.com/736x/ac/68/01/ac680193eae6d05df62eb71c99c51460.jpg" },
 ];
 
+// Interface untuk mendefinisikan bentuk state setiap gambar
+interface ImageState {
+  clickCount: number;
+}
+
+// --- 2. Perhitungan Layout Responsif ---
+
+// Hitung ukuran sel secara matematis untuk memastikan konsistensi
 const screenWidth = Dimensions.get("window").width;
 const cellMargin = 8;
 const numberOfColumns = 3;
 const cellSize = (screenWidth - cellMargin * (numberOfColumns + 1)) / numberOfColumns;
 
-interface ImageState {
-  clickCount: number;
-}
+// --- 3. Komponen Utama ---
 
 export default function ImageGrid() {
+  // State untuk melacak jumlah klik pada setiap gambar secara individual
   const [states, setStates] = useState<ImageState[]>(
-    images.map(() => ({ clickCount: 0 }))
+    imageData.map(() => ({ clickCount: 0 }))
   );
 
+  /**
+   * Menangani interaksi klik pada gambar, menjalankan siklus:
+   * 1. Klik pertama: Ganti gambar dan skala ke 1.2x.
+   * 2. Klik kedua: Skala ke 2.0x (maksimum).
+   * 3. Klik ketiga: Kembali ke gambar dan skala semula (reset).
+   */
   const handleClick = (index: number) => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setStates((prevStates) =>
       prevStates.map((item, i) => {
+        // Hanya perbarui state untuk gambar yang diklik
         if (i !== index) {
-          return item; // Hanya ubah state gambar yang diklik
+          return item;
         }
 
-        // LOGIKA BARU: Siklus 3-klik (0 -> 1 -> 2 -> reset ke 0)
+        // Siklus 3-klik: 0 (awal) -> 1 (skala 1.2x) -> 2 (skala 2.0x) -> 0 (reset)
         const nextClickCount = (item.clickCount + 1) % 3;
-
         return {
           clickCount: nextClickCount,
         };
@@ -64,20 +82,19 @@ export default function ImageGrid() {
 
   return (
     <View style={styles.wrapper}>
-      {images.map((img, index) => {
+      {imageData.map((img, index) => {
         const currentClickCount = states[index].clickCount;
         let scale = 1.0;
-        let source = img.main;
+        let sourceUri = img.main;
 
-        // Tentukan gambar dan skala berdasarkan jumlah klik
+        // Tentukan URI sumber dan skala berdasarkan jumlah klik saat ini
         if (currentClickCount === 1) {
-          source = img.alt;
+          sourceUri = img.alt;
           scale = 1.2;
         } else if (currentClickCount === 2) {
-          source = img.alt;
-          scale = 2.0; // <- Batas skala maksimum tercapai di sini
+          sourceUri = img.alt;
+          scale = 2.0;
         }
-        // Jika currentClickCount === 0, maka state kembali ke default (reset)
 
         return (
           <TouchableOpacity
@@ -87,7 +104,7 @@ export default function ImageGrid() {
             activeOpacity={0.8}
           >
             <Image
-              source={{ uri: source }} // Gunakan gambar lokal jika Anda sudah mengubahnya
+              source={{ uri: sourceUri }}
               style={[
                 styles.image,
                 { transform: [{ scale: scale }] },
@@ -101,6 +118,8 @@ export default function ImageGrid() {
   );
 }
 
+// --- 4. StyleSheet ---
+
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
@@ -112,11 +131,11 @@ const styles = StyleSheet.create({
   },
   cell: {
     width: cellSize,
-    height: cellSize / (3 / 4),
+    height: cellSize / (3 / 4), // Menjaga rasio aspek 4:3
     margin: cellMargin / 2,
     alignItems: "center",
     justifyContent: "center",
-    overflow: 'hidden',
+    overflow: 'hidden', // Penting agar gambar yang membesar tidak keluar dari sel
   },
   image: {
     width: "100%",
