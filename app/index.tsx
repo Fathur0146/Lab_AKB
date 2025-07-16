@@ -31,50 +31,50 @@ const cellSize = (screenWidth - cellMargin * (numberOfColumns + 1)) / numberOfCo
 
 // Daftar lengkap gambar: 9 gambar utama dan 9 gambar alternatif.
 const images = [
-  // Goblin
+  // Alone
   {
-    main: "https://i.pinimg.com/1200x/6f/0a/ea/6f0aea124653486be5fe605851a8d45f.jpg",
-    alt: "https://i.pinimg.com/736x/15/d2/50/15d250b65ac9c653b1366656693dcbbb.jpg",
+    main: "https://picsum.photos/id/334/2304/1536",
+    alt: "https://picsum.photos/id/338/367/267",
   },
-  // Archer Queen
+  // Road
   {
-    main: "https://i.pinimg.com/736x/c1/84/ec/c184ecd5aced13a9367d991527941824.jpg",
-    alt: "https://i.pinimg.com/736x/ab/a0/1a/aba01aaf922c1d3efe58c8e3ebce20fd.jpg",
+    main: "https://picsum.photos/id/335/367/267",
+    alt: "https://picsum.photos/id/339/367/267",
   },
-  // Dragon
+  // Nature
   {
-    main: "https://i.pinimg.com/736x/3f/dc/bc/3fdcbcc09d97f02048228d1f68b5364a.jpg",
-    alt: "https://i.pinimg.com/736x/3f/b7/b7/3fb7b713f5b225deab5b350175e5ce8f.jpg",
+    main: "https://picsum.photos/id/324/367/267",
+    alt: "https://picsum.photos/id/323/367/267",
   },
-  // Minion
+  // Transport
   {
-    main: "https://i.pinimg.com/736x/1a/5c/6b/1a5c6b26f462937b3c0aa02d3c4ab79a.jpg",
-    alt: "https://i.pinimg.com/736x/9c/1c/14/9c1c1471d3f346b2e942e1bf122a0c1c.jpg",
+    main: "https://picsum.photos/id/364/367/267",
+    alt: "https://picsum.photos/id/363/367/267",
   },
-  // Giant
+  // Market
   {
-    main: "https://i.pinimg.com/736x/dd/fe/a9/ddfea918dce401abdd0317317b729051.jpg",
-    alt: "https://i.pinimg.com/736x/db/52/96/db5296f97144c1f6a0523a2dfecad2ac.jpg",
+    main: "https://picsum.photos/id/395/367/267",
+    alt: "https://picsum.photos/id/398/367/267",
   },
-  // Barbarian King
+  // Coffee
   {
-    main: "https://i.pinimg.com/1200x/a5/db/37/a5db37a0c51325c1ea8fda2eba6fb7b7.jpg",
-    alt: "https://i.pinimg.com/736x/00/9c/25/009c2579203634f322b933185af0dfba.jpg",
+    main: "https://picsum.photos/id/425/367/267",
+    alt: "https://picsum.photos/id/431/367/267",
   },
-  // Wall Breaker
+  // Mountain and Bear
   {
-    main: "https://i.pinimg.com/736x/09/53/60/095360a2bf830f1122f87eb7369fe412.jpg",
-    alt: "https://i.pinimg.com/736x/8a/b3/b6/8ab3b6b9a64b08d5c9728353cbd95fed.jpg",
+    main: "https://picsum.photos/id/432/367/267",
+    alt: "https://picsum.photos/id/433/367/267",
   },
-  // Bowler
+  // Work Tools
   {
-    main: "https://i.pinimg.com/736x/3a/73/94/3a7394968dabf87a1edc32a2f5787ec5.jpg",
-    alt: "https://i.pinimg.com/736x/dc/43/9d/dc439de79376c2dd5ac0517f9b0fd8fb.jpg",
+    main: "https://picsum.photos/id/491/367/267",
+    alt: "https://picsum.photos/id/495/367/267",
   },
   // Wizard
   {
-    main: "https://i.pinimg.com/1200x/82/a0/ea/82a0eaad0d11da502eb150d87b2a5d3b.jpg",
-    alt: "https://i.pinimg.com/736x/ac/68/01/ac680193eae6d05df62eb71c99c51460.jpg",
+    main: "https://picsum.photos/id/532/367/267",
+    alt: "https://picsum.photos/id/534/367/267",
   },
 ];
 
