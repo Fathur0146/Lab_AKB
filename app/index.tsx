@@ -1,6 +1,5 @@
 // app/index.tsx
-// Komponen React Native (Expo) untuk menampilkan grid 3x3 gambar interaktif.
-// Setiap gambar memiliki gambar alternatif dan dapat membesar maksimal 2.0x.
+// Komponen React Native (Expo) untuk menampilkan grid 3x3 gambar interaktif dari aset lokal.
 
 import React, { useState } from "react";
 import {
@@ -12,6 +11,7 @@ import {
   LayoutAnimation,
   UIManager,
   Platform,
+  ImageSourcePropType,
 } from "react-native";
 
 // Aktifkan LayoutAnimation untuk Android
@@ -19,24 +19,25 @@ if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
-// Konstanta dan Konfigurasi
+// ==== 1. Impor Gambar Lokal ====
+// Pastikan path dan nama file sesuai dengan yang ada di folder assets/images Anda.
+const imagesData = [
+  { main: require("../assets/images/goblin.jpg"), alt: require("../assets/images/goblin2.jpg") },
+  { main: require("../assets/images/arcerquen.jpg"), alt: require("../assets/images/archerquen2.jpg") },
+  { main: require("../assets/images/dragon.jpg"), alt: require("../assets/images/drgon2.jpg") },
+  { main: require("../assets/images/minion.jpg"), alt: require("../assets/images/minion2.jpg") },
+  { main: require("../assets/images/giant.jpg"), alt: require("../assets/images/giant2.jpg") },
+  { main: require("../assets/images/barking.jpg"), alt: require("../assets/images/barking2.jpg") },
+  { main: require("../assets/images/wallbraker.jpg"), alt: require("../assets/images/wallbraker2.jpg") },
+  { main: require("../assets/images/bowler.jpg"), alt: require("../assets/images/bowler2.jpg") },
+  { main: require("../assets/images/wizard2.jpg"), alt: require("../assets/images/wizard.jpg") },
+];
+
+// ==== 2. Konstanta dan Konfigurasi ====
 const screenWidth = Dimensions.get("window").width;
 const cellMargin = 8;
 const numberOfColumns = 3;
 const cellSize = (screenWidth - cellMargin * (numberOfColumns + 1)) / numberOfColumns;
-
-// Daftar lengkap gambar
-const images = [
-  { main: "https://i.pinimg.com/1200x/6f/0a/ea/6f0aea124653486be5fe605851a8d45f.jpg", alt: "https://i.pinimg.com/736x/15/d2/50/15d250b65ac9c653b1366656693dcbbb.jpg" },
-  { main: "https://i.pinimg.com/736x/c1/84/ec/c184ecd5aced13a9367d991527941824.jpg", alt: "https://i.pinimg.com/736x/ab/a0/1a/aba01aaf922c1d3efe58c8e3ebce20fd.jpg" },
-  { main: "https://i.pinimg.com/736x/3f/dc/bc/3fdcbcc09d97f02048228d1f68b5364a.jpg", alt: "https://i.pinimg.com/736x/3f/b7/b7/3fb7b713f5b225deab5b350175e5ce8f.jpg" },
-  { main: "https://i.pinimg.com/736x/1a/5c/6b/1a5c6b26f462937b3c0aa02d3c4ab79a.jpg", alt: "https://i.pinimg.com/736x/9c/1c/14/9c1c1471d3f346b2e942e1bf122a0c1c.jpg" },
-  { main: "https://i.pinimg.com/736x/dd/fe/a9/ddfea918dce401abdd0317317b729051.jpg", alt: "https://i.pinimg.com/736x/db/52/96/db5296f97144c1f6a0523a2dfecad2ac.jpg" },
-  { main: "https://i.pinimg.com/1200x/a5/db/37/a5db37a0c51325c1ea8fda2eba6fb7b7.jpg", alt: "https://i.pinimg.com/736x/00/9c/25/009c2579203634f322b933185af0dfba.jpg" },
-  { main: "https://i.pinimg.com/736x/09/53/60/095360a2bf830f1122f87eb7369fe412.jpg", alt: "https://i.pinimg.com/736x/8a/b3/b6/8ab3b6b9a64b08d5c9728353cbd95fed.jpg" },
-  { main: "https://i.pinimg.com/736x/3a/73/94/3a7394968dabf87a1edc32a2f5787ec5.jpg", alt: "https://i.pinimg.com/736x/dc/43/9d/dc439de79376c2dd5ac0517f9b0fd8fb.jpg" },
-  { main: "https://i.pinimg.com/1200x/82/a0/ea/82a0eaad0d11da502eb150d87b2a5d3b.jpg", alt: "https://i.pinimg.com/736x/ac/68/01/ac680193eae6d05df62eb71c99c51460.jpg" },
-];
 
 interface ImageState {
   clickCount: number;
@@ -46,14 +47,13 @@ interface ImageState {
 
 export default function ImageGrid() {
   const [states, setStates] = useState<ImageState[]>(
-    images.map(() => ({ clickCount: 0, isAlt: false, scale: 1 }))
+    imagesData.map(() => ({ clickCount: 0, isAlt: false, scale: 1 }))
   );
 
   const handleClick = (index: number) => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setStates((prevStates) =>
       prevStates.map((item, i) => {
-        // Hentikan pembaruan jika bukan gambar yang benar atau batas klik tercapai
         if (i !== index || item.clickCount >= 3) {
           return item;
         }
@@ -61,9 +61,8 @@ export default function ImageGrid() {
         const nextClick = item.clickCount + 1;
         let newScale = item.scale;
 
-        // Terapkan skala berdasarkan urutan klik
         if (nextClick === 2) newScale = 1.2;
-        if (nextClick === 3) newScale = 2.0; // Ini adalah skala final
+        if (nextClick === 3) newScale = 2.0;
 
         return {
           clickCount: nextClick,
@@ -76,21 +75,25 @@ export default function ImageGrid() {
 
   return (
     <View style={styles.wrapper}>
-      {images.map((img, index) => {
+      {imagesData.map((img, index) => {
         const current = states[index];
-        const sourceUri = current.isAlt ? img.alt : img.main;
+        // Pilih antara gambar utama atau alternatif
+        const sourceUri: ImageSourcePropType = current.isAlt ? img.alt : img.main;
+
         return (
           <TouchableOpacity
             key={index}
             onPress={() => handleClick(index)}
             style={styles.cell}
             activeOpacity={0.8}
-            // Nonaktifkan tombol setelah 3 klik untuk mengunci skala
             disabled={current.clickCount >= 3}
           >
             <Image
-              source={{ uri: sourceUri }}
-              style={[ styles.image, { transform: [{ scale: current.scale }] }]}
+              source={sourceUri} // Untuk gambar lokal, `source` langsung menerima hasil `require()`
+              style={[
+                styles.image,
+                { transform: [{ scale: current.scale }] },
+              ]}
               resizeMode="cover"
             />
           </TouchableOpacity>
@@ -100,6 +103,7 @@ export default function ImageGrid() {
   );
 }
 
+// ==== 4. StyleSheet ====
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
