@@ -1,68 +1,78 @@
-# Lab AKB (Aplikasi Komputasi Bergerak)
+# Laboratorium Komputasi Bergerak - Fathur
 
-![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg) ![Built with Expo](https://img.shields.io/badge/Built%20with-Expo-4630EB.svg)
+Ini adalah proyek React Native (Expo) yang dikembangkan sebagai bagian dari tugas praktikum Laboratorium Komputasi Bergerak. Proyek ini berfokus pada implementasi dan penggunaan font kustom dalam aplikasi mobile.
+
+---
 
 ## ✨ Fitur Utama
 
--   Menampilkan bentuk Segitiga, Lingkaran, dan Persegi Panjang.
--   Menampilkan Nama dan Nomor Induk Mahasiswa dalam elemen yang berbeda.
--   Desain dengan layout yang seimbang dan kontras warna yang baik.
+- **Pemuatan 10 Font Kustom**: Mengimpor dan memuat 10 jenis font yang berbeda, terdiri dari:
+  - **5 Font Statis**: Setiap gaya (misal: Regular, Bold) memiliki file sendiri.
+  - **5 Font Variabel**: Satu file font mendukung berbagai tingkat ketebalan.
+- **Splash Screen**: Menampilkan *splash screen* saat aplikasi sedang memuat font untuk memastikan font siap digunakan sebelum halaman tampil.
+- **Tampilan Nama Berdasarkan Urutan**: Menampilkan daftar 10 nama mahasiswa yang ditentukan berdasarkan nomor urutan stambuk acuan.
+- **Gaya Unik**: Setiap nama dalam daftar ditampilkan menggunakan `fontFamily` yang berbeda untuk mendemonstrasikan pemuatan semua font.
 
-## 📸 Tampilan Aplikasi
+---
 
-Berikut adalah tampilan akhir dari aplikasi.
+## 🚀 Teknologi yang Digunakan
 
-![Tampilan Aplikasi](./.github/tampilan.jpeg)
+- **React Native**: Kerangka kerja utama untuk membangun aplikasi mobile.
+- **Expo**: Platform untuk mempermudah pengembangan dan build aplikasi React Native.
+- **Expo Router**: Sistem navigasi berbasis file untuk mengatur halaman aplikasi.
+- **TypeScript**: Menambahkan tipe statis pada JavaScript untuk kode yang lebih robust.
+- **Git & GitHub**: Untuk kontrol versi dan manajemen kode.
 
+---
 
-## 🛠️ Teknologi yang Digunakan
+## 📂 Struktur Proyek
 
--   **React Native**: Kerangka kerja utama untuk membangun aplikasi.
--   **Expo**: Platform untuk mempermudah pengembangan dan build aplikasi React Native.
--   **TypeScript**: Digunakan untuk *static typing*, membuat kode lebih aman dan mudah dikelola.
+```
+/
+├── app/                # Direktori utama untuk halaman (Expo Router)
+│   ├── _layout.tsx     # Layout global, tempat font dimuat
+│   └── index.tsx       # Halaman utama untuk menampilkan tugas
+├── assets/
+│   ├── fonts/          # Direktori untuk menyimpan semua file font kustom
+│   │   ├── static/
+│   │   └── variable/
+└── README.md           # File ini
+```
 
-## ⚙️ Instalasi & Menjalankan Proyek
+---
 
-Berikut adalah langkah-langkah untuk menjalankan proyek ini di lingkungan pengembangan lokal Anda.
+## ⚙️ Instalasi dan Menjalankan Proyek
 
-1.  **Clone repository**
+Untuk menjalankan proyek ini di lingkungan lokal Anda, ikuti langkah-langkah berikut:
 
+1.  **Clone Repositori**
     ```bash
-    git clone (https://github.com/Fathur0146/Lab_AKB.git)
+    git clone [https://github.com/Fathur0146/Lab_AKB.git](https://github.com/Fathur0146/Lab_AKB.git)
     ```
 
-2.  **Masuk ke direktori proyek**
-
+2.  **Masuk ke Direktori Proyek**
     ```bash
     cd Lab_AKB
     ```
 
-3.  **Install semua dependency**
-
+3.  **Install Dependencies**
     ```bash
     npm install
     ```
+    _Atau jika Anda menggunakan Yarn:_
+    ```bash
+    yarn install
+    ```
 
-4.  **Jalankan aplikasi**
-
+4.  **Jalankan Aplikasi**
     ```bash
     npx expo start
     ```
+    Setelah itu, pindai kode QR yang muncul menggunakan aplikasi Expo Go di perangkat seluler Anda.
 
-    > **Catatan:** Perintah `npm start` juga akan berfungsi karena sudah diatur dalam file `package.json`.
+---
 
-    Setelah menjalankan perintah di atas, akan muncul QR code. Pindai QR code tersebut menggunakan aplikasi **Expo Go** di ponsel Anda.
+## 👨‍💻 Dibuat oleh
 
-## 📂 Struktur Folder
-
-Berikut adalah struktur folder utama dalam proyek ini:
-
--   **/app**: Berisi semua layar dan logika navigasi aplikasi. Menggunakan sistem *file-based routing* dari Expo Router.
--   **/assets**: Tempat menyimpan file statis seperti gambar, ikon, dan font.
--   **app.json**: File konfigurasi utama untuk aplikasi Expo, tempat mengatur nama, ikon, splash screen, dll.
--   **package.json**: Mencatat semua skrip (`npm start`) dan dependensi (library) yang digunakan proyek.
--   **tsconfig.json**: Mengatur konfigurasi untuk compiler TypeScript pada proyek ini.
-
-## 📄 Lisensi
-
-Proyek ini didistribusikan di bawah Lisensi MIT.
+- **Nama**: Muh. Fathur Hidayat
+- **NIM**: 105841113322

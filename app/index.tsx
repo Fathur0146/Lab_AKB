@@ -1,139 +1,107 @@
 /**
  * @file app/index.tsx
- * @description Komponen React Native (Expo) untuk menampilkan grid gambar 3x3 yang interaktif,
- * dengan penskalaan individual yang dibatasi hingga 2x.
+ * @description Menampilkan 10 nama spesifik dengan font yang berbeda.
  */
+import React from "react";
+import { Text, View, StyleSheet, ScrollView } from "react-native";
 
-import React, { useState } from "react";
-import {
-  View,
-  Image,
-  TouchableOpacity,
-  StyleSheet,
-  Dimensions,
-  LayoutAnimation,
-  UIManager,
-  Platform,
-} from "react-native";
+// --- 1. Konfigurasi Awal ---
 
-// Aktifkan LayoutAnimation untuk Android untuk animasi yang lebih halus
-if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
-  UIManager.setLayoutAnimationEnabledExperimental(true);
-}
-
-// --- 1. Definisi Data & Tipe ---
-
-// Daftar lengkap dan tidak terpotong dari 9 pasang gambar
-const imageData = [
-    { main: "https://i.pinimg.com/1200x/6f/0a/ea/6f0aea124653486be5fe605851a8d45f.jpg", alt: "https://i.pinimg.com/736x/15/d2/50/15d250b65ac9c653b1366656693dcbbb.jpg" },
-    { main: "https://i.pinimg.com/736x/c1/84/ec/c184ecd5aced13a9367d991527941824.jpg", alt: "https://i.pinimg.com/736x/ab/a0/1a/aba01aaf922c1d3efe58c8e3ebce20fd.jpg" },
-    { main: "https://i.pinimg.com/736x/3f/dc/bc/3fdcbcc09d97f02048228d1f68b5364a.jpg", alt: "https://i.pinimg.com/736x/3f/b7/b7/3fb7b713f5b225deab5b350175e5ce8f.jpg" },
-    { main: "https://i.pinimg.com/736x/1a/5c/6b/1a5c6b26f462937b3c0aa02d3c4ab79a.jpg", alt: "https://i.pinimg.com/736x/9c/1c/14/9c1c1471d3f346b2e942e1bf122a0c1c.jpg" },
-    { main: "https://i.pinimg.com/736x/dd/fe/a9/ddfea918dce401abdd0317317b729051.jpg", alt: "https://i.pinimg.com/736x/db/52/96/db5296f97144c1f6a0523a2dfecad2ac.jpg" },
-    { main: "https://i.pinimg.com/1200x/a5/db/37/a5db37a0c51325c1ea8fda2eba6fb7b7.jpg", alt: "https://i.pinimg.com/736x/00/9c/25/009c2579203634f322b933185af0dfba.jpg" },
-    { main: "https://i.pinimg.com/736x/09/53/60/095360a2bf830f1122f87eb7369fe412.jpg", alt: "https://i.pinimg.com/736x/8a/b3/b6/8ab3b6b9a64b08d5c9728353cbd95fed.jpg" },
-    { main: "https://i.pinimg.com/736x/3a/73/94/3a7394968dabf87a1edc32a2f5787ec5.jpg", alt: "https://i.pinimg.com/736x/dc/43/9d/dc439de79376c2dd5ac0517f9b0fd8fb.jpg" },
-    { main: "https://i.pinimg.com/1200x/82/a0/ea/82a0eaad0d11da502eb150d87b2a5d3b.jpg", alt: "https://i.pinimg.com/736x/ac/68/01/ac680193eae6d05df62eb71c99c51460.jpg" },
+// Daftar 10 nama yang ingin ditampilkan (tanpa nama Anda)
+const daftarNamaTampilan = [
+  "Isnandar",                   // Nim 128
+  "Muh.Raditya Setiawan",       // Nim 129
+  "Muh. Dzikri Alfauzan Nuzul", // Nim 130
+  "Nisa Natayanti",             // Nim 131
+  "Eki Dian Safitri",           // Nim 132
+  // "Muh. Fathur Hidayat" // NIM acuan, tidak ditampilkan(133)
+  "Reyhan Al Gifari",           // Nim 134
+  "Afil Anugrah",               // Nim 135
+  "Abdul Naim",                 // Nim 136
+  "Syahrul Ramadhan",           // Nim 137
+  "Abdullah Khaeruna Anwar",    // Nim 138
 ];
 
-// Interface untuk mendefinisikan state setiap gambar
-interface ImageState {
-  clickCount: number;
-  scale: number;
-  isAlt: boolean;
-}
+// Daftar 10 nama font yang akan digunakan
+const daftarFont = [
+  "Amara", "Cormo", "Joan", "Macondo", "Nothing",
+  "Changa", "RedHat", "Stix", "Winky", "Yano",
+];
 
-// --- 2. Perhitungan Layout Responsif ---
+// --- 2. Komponen Utama ---
 
-// Penetapan ukuran sel yang seragam berdasarkan lebar layar
-const screenWidth = Dimensions.get("window").width;
-const cellMargin = 8;
-const numberOfColumns = 3;
-const cellSize = (screenWidth - cellMargin * (numberOfColumns + 1)) / numberOfColumns;
-
-// --- 3. Komponen Utama ---
-
-export default function ImageGrid() {
-  const [states, setStates] = useState<ImageState[]>(
-    imageData.map(() => ({ clickCount: 0, scale: 1.0, isAlt: false }))
-  );
-
-  const handleClick = (index: number) => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    setStates((prevStates) =>
-      prevStates.map((item, i) => {
-        // Hanya perbarui state untuk gambar yang diklik
-        if (i !== index || item.clickCount >= 2) {
-          return item; // Berhenti jika sudah mencapai skala maksimum
-        }
-
-        const nextClickCount = item.clickCount + 1;
-        let newScale = 1.2;
-        if (nextClickCount >= 2) {
-          newScale = 2.0; // Batas maksimum skala
-        }
-
-        return {
-          clickCount: nextClickCount,
-          scale: newScale,
-          isAlt: true,
-        };
-      })
-    );
-  };
-
+export default function App() {
   return (
-    <View style={styles.wrapper}>
-      {imageData.map((img, index) => {
-        const current = states[index];
-        const sourceUri = current.isAlt ? img.alt : img.main;
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.header}>Daftar Nama Tugas Font</Text>
+      <Text style={styles.subHeader}>
+        Menampilkan 5 nama sebelum dan 5 sesudah urutan 133
+      </Text>
+      <View style={styles.listContainer}>
+        {daftarNamaTampilan.map((nama, index) => {
+          // Terapkan font yang berbeda untuk setiap nama
+          const namaFont = daftarFont[index];
 
-        return (
-          <TouchableOpacity
-            key={index}
-            onPress={() => handleClick(index)}
-            style={styles.cell}
-            activeOpacity={0.8}
-            disabled={current.clickCount >= 2}
-          >
-            <Image
-              source={{ uri: sourceUri }}
-              style={[
-                styles.image,
-                { transform: [{ scale: current.scale }] }, // Implementasi penskalaan
-              ]}
-              resizeMode="cover"
-            />
-          </TouchableOpacity>
-        );
-      })}
-    </View>
+          return (
+            <View key={index} style={styles.namaItem}>
+              <Text
+                style={[
+                  styles.namaText,
+                  { fontFamily: namaFont },
+                ]}
+              >
+                {nama}
+              </Text>
+              <Text style={styles.fontInfo}>({namaFont})</Text>
+            </View>
+          );
+        })}
+      </View>
+    </ScrollView>
   );
 }
 
-// --- 4. StyleSheet ---
+// --- 3. StyleSheet ---
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    paddingHorizontal: cellMargin / 2,
-    marginTop: 20,
-    paddingBottom: 40,
+  container: {
+    flexGrow: 1,
+    padding: 20,
+    backgroundColor: "#f0f4f8",
   },
-  cell: {
-    // Penetapan ukuran sel yang seragam
-    width: cellSize,
-    height: cellSize / (3 / 4),
-    margin: cellMargin / 2,
-    alignItems: "center",
-    justifyContent: "center",
-    overflow: 'hidden',
+  header: {
+    fontSize: 28,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 8,
+    color: "#1e293b",
   },
-  image: {
+  subHeader: {
+    fontSize: 16,
+    textAlign: "center",
+    marginBottom: 24,
+    color: "#475569",
+  },
+  listContainer: {
     width: "100%",
-    height: "100%",
-    borderRadius: 10,
+  },
+  namaItem: {
+    backgroundColor: "#ffffff",
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+    borderRadius: 12,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: "#e2e8f0",
+  },
+  namaText: {
+    fontSize: 22,
+    color: "#334155",
+  },
+  fontInfo: {
+    fontSize: 12,
+    color: "#94a3b8",
+    marginTop: 4,
+    fontStyle: "italic",
   },
 });
