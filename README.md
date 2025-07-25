@@ -6,7 +6,7 @@ Sebuah aplikasi sederhana yang dibuat dengan React Native (Expo) untuk menampilk
 
 ## 📸 Tangkapan Layar
 
-![Tangkapan Layar Aplikasi](../.github/Tampilan.jpeg)
+![Tangkapan Layar Aplikasi](../../.github/Tampilan.jpeg)
 
 *(Ganti `link-ke-screenshot-anda.png` dengan gambar hasil aplikasi Anda setelah dijalankan)*
 
