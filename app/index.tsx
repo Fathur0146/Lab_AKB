@@ -1,107 +1,124 @@
-/**
- * @file app/index.tsx
- * @description Menampilkan 10 nama spesifik dengan font yang berbeda.
- */
-import React from "react";
-import { Text, View, StyleSheet, ScrollView } from "react-native";
+import React from 'react';
+import { StyleSheet, Text, View, ScrollView, SafeAreaView } from 'react-native';
 
-// --- 1. Konfigurasi Awal ---
-
-// Daftar 10 nama yang ingin ditampilkan (tanpa nama Anda)
-const daftarNamaTampilan = [
-  "Isnandar",                   // Nim 128
-  "Muh.Raditya Setiawan",       // Nim 129
-  "Muh. Dzikri Alfauzan Nuzul", // Nim 130
-  "Nisa Natayanti",             // Nim 131
-  "Eki Dian Safitri",           // Nim 132
-  // "Muh. Fathur Hidayat" // NIM acuan, tidak ditampilkan(133)
-  "Reyhan Al Gifari",           // Nim 134
-  "Afil Anugrah",               // Nim 135
-  "Abdul Naim",                 // Nim 136
-  "Syahrul Ramadhan",           // Nim 137
-  "Abdullah Khaeruna Anwar",    // Nim 138
-];
-
-// Daftar 10 nama font yang akan digunakan
-const daftarFont = [
-  "Amara", "Cormo", "Joan", "Macondo", "Nothing",
-  "Changa", "RedHat", "Stix", "Winky", "Yano",
-];
-
-// --- 2. Komponen Utama ---
+// Impor keluarga ikon yang ingin Anda gunakan
+import Ionicons from '@expo/vector-icons/Ionicons';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import Feather from '@expo/vector-icons/Feather';
 
 export default function App() {
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.header}>Daftar Nama Tugas Font</Text>
-      <Text style={styles.subHeader}>
-        Menampilkan 5 nama sebelum dan 5 sesudah urutan 133
-      </Text>
-      <View style={styles.listContainer}>
-        {daftarNamaTampilan.map((nama, index) => {
-          // Terapkan font yang berbeda untuk setiap nama
-          const namaFont = daftarFont[index];
+    <SafeAreaView style={styles.safeArea}>
+      <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.title}>Galeri 10 Ikon</Text>
+      
+      {/* Container untuk grid ikon */}
+      <View style={styles.iconGrid}>
 
-          return (
-            <View key={index} style={styles.namaItem}>
-              <Text
-                style={[
-                  styles.namaText,
-                  { fontFamily: namaFont },
-                ]}
-              >
-                {nama}
-              </Text>
-              <Text style={styles.fontInfo}>({namaFont})</Text>
-            </View>
-          );
-        })}
+        {/* Ikon 1 */}
+        <View style={styles.iconContainer}>
+          <Ionicons name="home" size={40} color="#3498db" />
+          <Text style={styles.iconLabel}>Home</Text>
+        </View>
+
+        {/* Ikon 2 */}
+        <View style={styles.iconContainer}>
+          <MaterialCommunityIcons name="cards-heart" size={40} color="#e74c3c" />
+          <Text style={styles.iconLabel}>Suka</Text>
+        </View>
+
+        {/* Ikon 3 */}
+        <View style={styles.iconContainer}>
+          <FontAwesome name="send" size={40} color="#2ecc71" />
+          <Text style={styles.iconLabel}>Kirim</Text>
+        </View>
+
+        {/* Ikon 4 */}
+        <View style={styles.iconContainer}>
+          <Feather name="settings" size={40} color="#9b59b6" />
+          <Text style={styles.iconLabel}>Pengaturan</Text>
+        </View>
+
+        {/* Ikon 5 */}
+        <View style={styles.iconContainer}>
+          <Ionicons name="camera" size={40} color="#f1c40f" />
+          <Text style={styles.iconLabel}>Kamera</Text>
+        </View>
+        
+        {/* Ikon 6 */}
+        <View style={styles.iconContainer}>
+          <MaterialCommunityIcons name="cart" size={40} color="#e67e22" />
+          <Text style={styles.iconLabel}>Keranjang</Text>
+        </View>
+
+        {/* Ikon 7 */}
+        <View style={styles.iconContainer}>
+          <FontAwesome name="user" size={40} color="#1abc9c" />
+          <Text style={styles.iconLabel}>Profil</Text>
+        </View>
+
+        {/* Ikon 8 */}
+        <View style={styles.iconContainer}>
+          <Feather name="bell" size={40} color="#34495e" />
+          <Text style={styles.iconLabel}>Notifikasi</Text>
+        </View>
+
+        {/* Ikon 9 */}
+        <View style={styles.iconContainer}>
+          <Ionicons name="stats-chart" size={40} color="#d35400" />
+          <Text style={styles.iconLabel}>Statistik</Text>
+        </View>
+
+        {/* Ikon 10 */}
+        <View style={styles.iconContainer}>
+          <MaterialCommunityIcons name="cloud-upload" size={40} color="#2980b9" />
+          <Text style={styles.iconLabel}>Upload</Text>
+        </View>
+
       </View>
     </ScrollView>
+    </SafeAreaView>
   );
 }
 
-// --- 3. StyleSheet ---
-
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#f4f6f8',
+  },
   container: {
     flexGrow: 1,
-    padding: 20,
-    backgroundColor: "#f0f4f8",
+    backgroundColor: '#f4f6f8',
+    alignItems: 'center',
+    paddingVertical: 40,
   },
-  header: {
+  title: {
     fontSize: 28,
-    fontWeight: "bold",
-    textAlign: "center",
-    marginBottom: 8,
-    color: "#1e293b",
+    fontWeight: 'bold',
+    marginBottom: 30,
+    color: '#333',
   },
-  subHeader: {
-    fontSize: 16,
-    textAlign: "center",
-    marginBottom: 24,
-    color: "#475569",
+  iconGrid: {
+    flexDirection: 'row', // Susun ikon secara horizontal
+    flexWrap: 'wrap',     // Pindah ke baris baru jika tidak cukup ruang
+    justifyContent: 'center', // Pusatkan ikon di dalam baris
+    width: '90%',
   },
-  listContainer: {
-    width: "100%",
-  },
-  namaItem: {
-    backgroundColor: "#ffffff",
-    paddingVertical: 16,
-    paddingHorizontal: 20,
-    borderRadius: 12,
-    marginBottom: 12,
+  iconContainer: {
+    width: '30%', // Setiap kontainer mengambil sekitar 1/3 lebar
+    aspectRatio: 1, // Membuat kontainer menjadi bujur sangkar
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
+    margin: 5,
+    borderRadius: 15,
     borderWidth: 1,
-    borderColor: "#e2e8f0",
+    borderColor: '#e8e8e8',
   },
-  namaText: {
-    fontSize: 22,
-    color: "#334155",
-  },
-  fontInfo: {
+  iconLabel: {
+    marginTop: 8,
     fontSize: 12,
-    color: "#94a3b8",
-    marginTop: 4,
-    fontStyle: "italic",
+    color: '#666',
   },
 });

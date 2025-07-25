@@ -1,27 +1,34 @@
-# Laboratorium Komputasi Bergerak - Fathur
+# Galeri Ikon - Tugas Expo
 
-Ini adalah proyek React Native (Expo) yang dikembangkan sebagai bagian dari tugas praktikum Laboratorium Komputasi Bergerak. Proyek ini berfokus pada implementasi dan penggunaan font kustom dalam aplikasi mobile.
+Sebuah aplikasi sederhana yang dibuat dengan React Native (Expo) untuk menampilkan galeri 10 ikon berbeda dari pustaka `@expo/vector-icons`. Proyek ini mendemonstrasikan cara mengimpor dan menata beberapa ikon dalam tata letak grid yang rapi dan responsif.
+
+---
+
+## 📸 Tangkapan Layar
+
+![Tangkapan Layar Aplikasi](../.github/Tampilan.jpeg)
+
+*(Ganti `link-ke-screenshot-anda.png` dengan gambar hasil aplikasi Anda setelah dijalankan)*
 
 ---
 
 ## ✨ Fitur Utama
 
-- **Pemuatan 10 Font Kustom**: Mengimpor dan memuat 10 jenis font yang berbeda, terdiri dari:
-  - **5 Font Statis**: Setiap gaya (misal: Regular, Bold) memiliki file sendiri.
-  - **5 Font Variabel**: Satu file font mendukung berbagai tingkat ketebalan.
-- **Splash Screen**: Menampilkan *splash screen* saat aplikasi sedang memuat font untuk memastikan font siap digunakan sebelum halaman tampil.
-- **Tampilan Nama Berdasarkan Urutan**: Menampilkan daftar 10 nama mahasiswa yang ditentukan berdasarkan nomor urutan stambuk acuan.
-- **Gaya Unik**: Setiap nama dalam daftar ditampilkan menggunakan `fontFamily` yang berbeda untuk mendemonstrasikan pemuatan semua font.
+-   Menampilkan **10 ikon unik** dari berbagai keluarga ikon, termasuk `Ionicons`, `MaterialCommunityIcons`, `FontAwesome`, dan `Feather`.
+-   Tata letak **grid yang rapi** dan responsif, menampilkan 3 ikon per baris yang secara otomatis menyesuaikan diri.
+-   Setiap ikon dilengkapi dengan **label** teks yang jelas untuk identifikasi.
+-   Menggunakan **Expo Router** untuk mengatur layout dan judul halaman pada *header* aplikasi.
+-   Tampilan yang aman dan konsisten di berbagai perangkat berkat penggunaan `ScrollView` dan `SafeAreaView`.
 
 ---
 
 ## 🚀 Teknologi yang Digunakan
 
-- **React Native**: Kerangka kerja utama untuk membangun aplikasi mobile.
-- **Expo**: Platform untuk mempermudah pengembangan dan build aplikasi React Native.
-- **Expo Router**: Sistem navigasi berbasis file untuk mengatur halaman aplikasi.
-- **TypeScript**: Menambahkan tipe statis pada JavaScript untuk kode yang lebih robust.
-- **Git & GitHub**: Untuk kontrol versi dan manajemen kode.
+-   **React Native**: Kerangka kerja utama untuk membangun aplikasi.
+-   **Expo**: Platform untuk mempermudah pengembangan dan build aplikasi React Native.
+-   **Expo Router**: Sistem navigasi berbasis file untuk mengatur halaman dan layout.
+-   **TypeScript**: Menambahkan tipe statis pada JavaScript.
+-   **`@expo/vector-icons`**: Pustaka untuk mengakses ribuan ikon siap pakai.
 
 ---
 
@@ -30,29 +37,27 @@ Ini adalah proyek React Native (Expo) yang dikembangkan sebagai bagian dari tuga
 ```
 /
 ├── app/                # Direktori utama untuk halaman (Expo Router)
-│   ├── _layout.tsx     # Layout global, tempat font dimuat
-│   └── index.tsx       # Halaman utama untuk menampilkan tugas
-├── assets/
-│   ├── fonts/          # Direktori untuk menyimpan semua file font kustom
-│   │   ├── static/
-│   │   └── variable/
+│   ├── _layout.tsx     # Konfigurasi layout global dan header aplikasi
+│   └── index.tsx       # Halaman utama yang menampilkan galeri ikon
 └── README.md           # File ini
 ```
+-   **`app/index.tsx`**: Berisi semua logika dan komponen untuk menampilkan 10 ikon dalam sebuah grid.
+-   **`app/_layout.tsx`**: Mengonfigurasi `Stack` navigator dari Expo Router dan mengatur judul serta gaya pada *header* aplikasi.
 
 ---
 
-## ⚙️ Instalasi dan Menjalankan Proyek
+## ⚙️ Instalasi dan Menjalankan
 
 Untuk menjalankan proyek ini di lingkungan lokal Anda, ikuti langkah-langkah berikut:
 
 1.  **Clone Repositori**
     ```bash
-    git clone [https://github.com/Fathur0146/Lab_AKB.git](https://github.com/Fathur0146/Lab_AKB.git)
+    git clone [URL_REPOSITORI_ANDA]
     ```
 
 2.  **Masuk ke Direktori Proyek**
     ```bash
-    cd Lab_AKB
+    cd [NAMA_FOLDER_PROYEK]
     ```
 
 3.  **Install Dependencies**
@@ -74,5 +79,5 @@ Untuk menjalankan proyek ini di lingkungan lokal Anda, ikuti langkah-langkah ber
 
 ## 👨‍💻 Dibuat oleh
 
-- **Nama**: Muh. Fathur Hidayat
-- **NIM**: 105841113322
+-   **Nama**: [Muh. Fathur Hidayat]
+-   **NIM**: [105841113322]
