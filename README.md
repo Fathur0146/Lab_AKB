@@ -50,12 +50,12 @@ Untuk menjalankan proyek ini di lingkungan lokal Anda, ikuti langkah-langkah ber
 
 1.  **Clone Repositori**
     ```bash
-    git clone [URL_REPOSITORI_ANDA]
+    git clone [https://github.com/Fathur0146/Lab_AKB.git]
     ```
 
 2.  **Masuk ke Direktori Proyek**
     ```bash
-    cd [NAMA_FOLDER_PROYEK]
+    cd [Lab_AKB]
     ```
 
 3.  **Install Dependencies**
