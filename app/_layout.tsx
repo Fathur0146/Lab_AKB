@@ -1,22 +1,15 @@
-import { Stack } from 'expo-router';
+/**
+ * @file app/_layout.tsx
+ * @description Layout utama (root) untuk seluruh aplikasi.
+ */
 import React from 'react';
+import { Stack } from 'expo-router';
 
 export default function RootLayout() {
   return (
     <Stack>
-      <Stack.Screen 
-        name="index" 
-        options={{
-          title: 'Galeri 10 Ikon',
-          headerStyle: {
-            backgroundColor: '#f4f6f8',
-          },
-          headerTitleStyle: {
-            fontWeight: 'bold',
-            color: '#333',
-          },
-        }} 
-      />
+      {/* Opsi ini akan menyembunyikan header di level paling atas */}
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
     </Stack>
   );
 }
