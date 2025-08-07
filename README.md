@@ -4,14 +4,6 @@ Sebuah aplikasi mobile sederhana yang dibuat menggunakan React Native dan Expo R
 
 ---
 
-## 📸 Tangkapan Layar
-
-![Tangkapan Layar Aplikasi](./assets/screenshot.png)
-
-*(Catatan: Pastikan Anda menempatkan file screenshot dengan nama `screenshot.png` di dalam folder `assets` agar gambar ini tampil)*
-
----
-
 ## ✨ Fitur Utama
 
 Aplikasi ini memiliki tiga tab utama dengan fungsi sebagai berikut:
@@ -67,12 +59,12 @@ Untuk menjalankan proyek ini di lingkungan lokal Anda, ikuti langkah-langkah ber
 
 1.  **Clone Repositori**
     ```bash
-    git clone [https://github.com/Fathur0146/Lab_AKB.git]
+    git clone [https://github.com/Fathur0146/Lab_AKB.git](https://github.com/Fathur0146/Lab_AKB.git)
     ```
 
 2.  **Masuk ke Direktori Proyek**
     ```bash
-    cd [Lab_AKB]
+    cd Lab_AKB
     ```
 
 3.  **Install Dependencies**
@@ -96,4 +88,3 @@ Untuk menjalankan proyek ini di lingkungan lokal Anda, ikuti langkah-langkah ber
 
 -   **Nama**: Muh. Fathur Hidayat
 -   **NIM**: 105841113322
-
