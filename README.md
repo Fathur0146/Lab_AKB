@@ -1,24 +1,15 @@
-# Aplikasi Informasi Unismuh - Tugas Expo Router
+# Aplikasi Daftar Mahasiswa - Expo Router
 
-Sebuah aplikasi mobile sederhana yang dibuat menggunakan React Native dan Expo Router. Aplikasi ini dirancang untuk menampilkan informasi dalam navigasi tab bar yang mudah digunakan, terdiri dari tiga halaman utama: Home, About, dan Profil.
-
----
+Sebuah aplikasi mobile sederhana yang dibuat dengan React Native dan Expo Router. Aplikasi ini menampilkan daftar mahasiswa dari data lokal dan memungkinkan pengguna untuk melihat detail setiap mahasiswa dengan menekan nama mereka dalam daftar.
 
 ## ✨ Fitur Utama
 
-Aplikasi ini memiliki tiga tab utama dengan fungsi sebagai berikut:
-
-1.  **Tab Home**
-    -   Menampilkan informasi umum mengenai **Universitas Muhammadiyah Makassar (Unismuh)**.
-    -   Menyertakan deskripsi singkat, visi & misi, daftar fakultas, serta logo universitas.
-
-2.  **Tab About**
-    -   Berisi penjelasan mengenai aplikasi ini, termasuk tujuan pembuatannya sebagai tugas praktikum.
-    -   Menjelaskan fungsi dari masing-masing tab yang ada (Home, About, dan Profil).
-
-3.  **Tab Profil**
-    -   Menampilkan data diri pribadi mahasiswa yang membuat aplikasi.
-    -   Informasi yang ditampilkan meliputi nama lengkap, NIM, kelas, jurusan, fakultas, dan foto profil yang diambil dari aset lokal.
+-   **Daftar Mahasiswa**: Menampilkan 10 nama mahasiswa yang bersumber dari file data lokal.
+-   **Navigasi ke Detail**: Pengguna dapat menekan nama mahasiswa untuk bernavigasi ke halaman detail. Setiap item daftar dilengkapi ikon untuk UX yang lebih baik.
+-   **Halaman Detail Dinamis**: Halaman detail secara dinamis menampilkan informasi lengkap (Nama, NIM, dan Foto) dari mahasiswa yang dipilih. Judul halaman juga berubah sesuai nama mahasiswa.
+-   **Navigasi Modern**: Menggunakan Expo Router untuk menangani navigasi berbasis file, termasuk:
+    -   **Navigasi Stack**: Alur dari daftar ke detail menggunakan fungsionalitas navigator `Stack`.
+    -   **Rute Dinamis**: Menggunakan rute dinamis (`/user/[id]`) untuk membuat halaman detail yang fleksibel.
 
 ---
 
@@ -26,30 +17,27 @@ Aplikasi ini memiliki tiga tab utama dengan fungsi sebagai berikut:
 
 -   **React Native**: Kerangka kerja utama untuk membangun aplikasi mobile.
 -   **Expo**: Platform untuk mempermudah pengembangan dan build aplikasi React Native.
--   **Expo Router**: Sistem navigasi berbasis file untuk mengatur halaman dan navigasi tab bar.
+-   **Expo Router**: Sistem navigasi berbasis file untuk mengatur alur halaman.
 -   **TypeScript**: Menambahkan tipe statis pada JavaScript untuk kode yang lebih robust.
--   **`@expo/vector-icons`**: Pustaka untuk menampilkan ikon pada tab bar.
+-   **`@expo/vector-icons`**: Pustaka untuk menampilkan ikon di dalam daftar.
 
 ---
 
 ## 📂 Struktur Proyek
 
-Proyek ini menggunakan struktur navigasi tab yang direkomendasikan oleh Expo Router.
+Proyek ini menggunakan struktur navigasi Stack yang direkomendasikan oleh Expo Router, dengan data yang dipisahkan ke dalam folder `students`.
 
-
+```
 /
 ├── app/
-│   ├── (tabs)/            # Grup untuk halaman yang akan ditampilkan di tab bar
-│   │   ├── _layout.tsx    # Konfigurasi utama untuk Tab Bar
-│   │   ├── home.tsx       # Halaman Home
-│   │   ├── about.tsx      # Halaman About
-│   │   └── profil.tsx     # Halaman Profil
-│   └── _layout.tsx        # Layout utama (root) aplikasi
-├── assets/
-│   └── images/
-│       └── foto-profil.png # Aset gambar lokal untuk foto profil
-└── README.md              # File ini
-
+│   ├── user/
+│   │   └── [id].tsx     # Halaman dinamis untuk detail mahasiswa
+│   ├── _layout.tsx      # Layout utama (root) yang mengatur Stack Navigator
+│   └── index.tsx        # Halaman utama yang menampilkan daftar mahasiswa
+├── students/
+│   └── students.ts      # File data lokal yang berisi daftar mahasiswa
+└── README.md            # File ini
+```
 
 ---
 
@@ -70,10 +58,6 @@ Untuk menjalankan proyek ini di lingkungan lokal Anda, ikuti langkah-langkah ber
 3.  **Install Dependencies**
     ```bash
     npm install
-    ```
-    _Atau jika Anda menggunakan Yarn:_
-    ```bash
-    yarn install
     ```
 
 4.  **Jalankan Aplikasi**

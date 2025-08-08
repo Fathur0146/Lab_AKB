@@ -1,44 +1,34 @@
 /**
  * @file app/(tabs)/_layout.tsx
- * @description Mengatur navigasi tab bar utama aplikasi.
+ * @description Mengatur navigasi tab bar dan halaman di dalamnya.
  */
 import React from 'react';
 import { Tabs } from 'expo-router';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: '#007AFF', // Warna ikon aktif
-        tabBarInactiveTintColor: 'gray', // Warna ikon tidak aktif
-        tabBarStyle: {
-          backgroundColor: '#FFFFFF',
+        headerStyle: {
+          backgroundColor: '#007AFF',
         },
+        headerTintColor: '#fff',
+        tabBarActiveTintColor: '#007AFF',
       }}>
       <Tabs.Screen
-        name="home"
+        name="index" // Ini merujuk ke file app/(tabs)/index.tsx
         options={{
-          title: 'Home',
-          headerTitle: 'Beranda Unismuh',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
+          title: 'Mahasiswa',
+          headerTitle: 'Daftar Mahasiswa',
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="users" color={color} />,
         }}
       />
       <Tabs.Screen
-        name="about"
+        name="user/[id]" // Ini merujuk ke file app/(tabs)/user/[id].tsx
         options={{
-          title: 'About',
-          headerTitle: 'Tentang Aplikasi',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="info-circle" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="profil"
-        options={{
-          title: 'Profil',
-          headerTitle: 'Profil Mahasiswa',
-          tabBarIcon: ({ color }) => <MaterialIcons size={28} name="person" color={color} />,
+          // Opsi ini menyembunyikan halaman detail dari tab bar
+          href: null,
         }}
       />
     </Tabs>
